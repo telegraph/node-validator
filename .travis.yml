@@ -1,0 +1,16 @@
+language: node_js
+node_js: '8'
+jobs:
+  include:
+  - stage: test
+    script: npm test
+  - stage: npm release
+    script: echo "Deploying to npm ..."
+    deploy:
+      provider: npm
+      email: telegraph.engineering@telepgraph.co.uk
+      api_key:
+        secure: Cp0iHUuf9DlChsv5InOkHnIjZlD0ri4lDIPf1PwOZjS5G289pSvhffBRHcO03hoXU2xYNcSu/+OgfrDQggoc1WJhpc7RznkOayTJtRkEfz1xYHBDEg85ezZN0jtFB1aiCANMq5otfBRyUvcwLCU5kBxngOWDKwwttbGsJ2/+JAriBcSxkiFFOgAIsTSEIpd9APtbjn1QUNYaHK9IrGLgzORoc3pcqYbHlFUCffyj3FPVj22WT4mjYIV4gge0ofAeMsLyoYlpb6DOfgkv9W3l+txD2SBF9pj/HxhzYwUT2eZtc7yincjqPhKagv0hO8w5404r0WiKn5bArYYeX2bCvWGV1Ae+QuGvGbmxJRQccLfq8+VYy8UN9UanV2k56+SUByBrILJtVaGfBrdJnbTcsMa21br9hiRtGoxOuf7fztBofLkyh7XTHaXSbpNXZ+ZgkgM2OMPRDxxm3yb8iDgg9Qbz1Be5CYkLTE/hwWplmsiLuFeEdtXXizce/mrZPGC3bWUBkRKKTjq7HVxQt6uHLa4OnhJlbs39dQaJjJcfauAt8IYt1F86mbVkvuj7ekWOiVdDvk6QIaYq9SNq64r1xnlPyS6WP+l4NM8zZa33jXT92eX8+O9mERbxOznnB37svV1Ar8qBij2IqVxLacMze4TVTLYiTyRkdNbwLT//STs=
+      on:
+        tags: true
+        repo: telegraph/node-validator
