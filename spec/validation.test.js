@@ -81,6 +81,11 @@ describe('Given a configuration object', () => {
             let result = Validation({}, configValidation2);
             expect(result).toEqual(["Invalid configuration value - param1 is required if param2 is not defined"]);
         });
+
+        it("required field is not defined and does not have a type", () => {
+            let result = Validation({}, {param1: {required: true}});
+            expect(result).toEqual(["Missing configuration - 'param1'"]);
+        });
     });
 
     describe("It should not return errors if ", () => {
@@ -138,5 +143,6 @@ describe('Given a configuration object', () => {
 
             expect(result).toEqual([]);
         });
+
     });
 });
