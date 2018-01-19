@@ -1,7 +1,7 @@
 
 'use strict';
 
-const Validation = require('../index').validation;
+const Validation = require('../index');
 
 describe('Given a configuration object', () => {
     let configValidation = {

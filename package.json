@@ -1,6 +1,6 @@
 {
   "name": "@telegraph-engineering/node-validator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple package for validating parameters",
   "repository": {
     "type": "git",
