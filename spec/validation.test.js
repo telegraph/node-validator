@@ -6,20 +6,46 @@ const Validation = require('../index').validation;
 describe('Given a configuration object', () => {
     let configValidation = {
         param1:{
-            param11: {
-                required: false,
-                type    : 'string'
-            },
-            param12: {
-                type    : 'number'
-            },
-            param13: {
-                validValues: [1,2,3]
+            children: {
+                param11: {
+                    required: false,
+                    type: 'string'
+                },
+                param12: {
+                    type: 'number'
+                },
+                param13: {
+                    validValues: [1, 2, 3]
+                }
             }
         },
         param2: {
             required: true,
             type    : 'string'
+        },
+        param3: {
+            required: false,
+            type: 'number',
+            validation: function (num) {
+                const remainder = num % 2;
+                if (remainder) {
+                    return 'Expected number to be even';
+                }
+                return undefined;
+            }
+        }
+    };
+    let configValidation2 = {
+        param1:{
+           requiredIf: 'param2'
+        },
+        param2: {
+            required: false
+        }
+    };
+    let configValidation3 = {
+        param1: {
+            required: false
         }
     };
     describe("It should return errors if ", () => {
@@ -38,6 +64,23 @@ describe('Given a configuration object', () => {
             let result = Validation({param1: {param13: 4}, param2: 'valid string'}, configValidation);
             expect(result).toEqual(["Invalid configuration value - Actual: 'param1.param13 = 4' Expected: param1.param13 to be one of \"1, 2, 3\""]);
         });
+        it("fields custom validation fails", () => {
+            let result = Validation({param1: {param13: 3}, param2: 'valid string', param3: 3}, configValidation);
+            expect(result).toEqual(["Invalid configuration value - Custom validation failed, Actual: 'param3 = 3', Expected number to be even"]);
+        });
+        it("fields custom validation has an invalid function defined", () => {
+            let configValidationCustom = {
+                param1: {
+                    validation: "not a function"
+                }
+            };
+            let result = Validation({param1: 27}, configValidationCustom);
+            expect(result).toEqual(["Invalid validation function for 'param1'"]);
+        });
+        it("it is not defined, and a has a required if value that is not defined", () => {
+            let result = Validation({}, configValidation2);
+            expect(result).toEqual(["Invalid configuration value - param1 is required if param2 is not defined"]);
+        });
     });
 
     describe("It should not return errors if ", () => {
@@ -47,12 +90,30 @@ describe('Given a configuration object', () => {
             expect(result).toEqual([]);
         });
 
+        it("Empty object is passed for validation", () => {
+            let result = Validation({}, configValidation3);
+        });
+        it("no object is passed for validation", () => {
+            let result = Validation(undefined, configValidation3);
+        });
+
         it("optional fields are not present", () => {
             let result = Validation({
                 param1:{
                     param11: "value11"
                 },
                 param2: "value2"
+            }, configValidation);
+
+            expect(result).toEqual([]);
+        });
+        it("validation passes", () => {
+            let result = Validation({
+                param1:{
+                    param11: "value11"
+                },
+                param2: "value2",
+                param3: 2
             }, configValidation);
 
             expect(result).toEqual([]);
@@ -66,6 +127,14 @@ describe('Given a configuration object', () => {
                 },
                 param2: "value2"
             }, configValidation);
+
+            expect(result).toEqual([]);
+        });
+
+        it("feild is undefined but requiredIf feild is defined", () => {
+            let result = Validation({
+                param2: "value2"
+            }, configValidation2);
 
             expect(result).toEqual([]);
         });
