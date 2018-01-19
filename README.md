@@ -48,7 +48,7 @@ Example Checking that a parameter is defined and has type string.
 | [validation](#validation)| {function}| | A custom validator function, which will be called with the value of the parameter under test, if the function returns anything other than undefined it will be treated as a failure|
 | [validValues](#validValues)| {array}|| An array of possible values for this parameter|
 
-<a name="children">
+<a name="children"></a>
 ### children
 
 If a passed object has children that you wish to validate, you can pass the specs for the children as children parameter
@@ -65,7 +65,7 @@ If a passed object has children that you wish to validate, you can pass the spec
     Validate({param1: {param2: undefined}}) //fail
     Validate({param1: {param2: true}}) //pass
    
-<a name="required">
+<a name="required"></a>
 ### required
 
 This field defines if a field is required
@@ -78,7 +78,7 @@ This field defines if a field is required
     Validate({param1: undefined}) //fail
     Validate({param1: true}) //pass
 
-<a name="type">
+<a name="type"></a>
 ### type
 
 This field defines what type of fata the field must contain, if it is defined
@@ -91,7 +91,7 @@ This field defines what type of fata the field must contain, if it is defined
     Validate({param1: 1234}) //fail
     Validate({param1: 'String'}) //pass
 
-<a name="requiredIf">
+<a name="requiredIf"></a>
 ### requiredIf
 
 This field allows you to specify that this field is required, if another field is undefined
@@ -109,7 +109,7 @@ This field allows you to specify that this field is required, if another field i
     Validate({param1: 1234}) //pass
     Validate({param1: 'String', param2: 'String 2'}) //pass
 
-<a name="validation">
+<a name="validation"></a>
 ### validation
 
 Allows the passing of a custom function to validate values
@@ -126,7 +126,7 @@ Allows the passing of a custom function to validate values
     Validate({param1: 'this string is invalid'}) //fail
     Validate({param1: 'this string is valid'}) //pass
 
-<a name="validValues">
+<a name="validValues"></a>
 ### validValues
 
 Allows the passing of a list of values that the paramter must match one of
