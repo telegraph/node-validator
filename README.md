@@ -3,6 +3,8 @@
 
 ## Build Status
 ![build status](https://travis-ci.org/telegraph/node-validator.svg?branch=master "Build Status")
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1f6988a24aee42b78291d243b404f823)](https://www.codacy.com/app/telegraph/node-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=telegraph/node-validator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/1f6988a24aee42b78291d243b404f823)](https://www.codacy.com/app/telegraph/node-validator?utm_source=github.com&utm_medium=referral&utm_content=telegraph/node-validator&utm_campaign=Badge_Coverage)
 
 ## Install
 ```
