@@ -3,7 +3,7 @@ node_js: '8'
 jobs:
   include:
   - stage: test
-    script: npm test
+    script: npm run codacyCoverage
   - stage: npm release
     script: echo "Deploying to npm ..."
     deploy:
@@ -14,3 +14,6 @@ jobs:
       on:
         tags: true
         repo: telegraph/node-validator
+env:
+  global:
+    secure: lpTmWfYvVRo7N5KqgxdPwOU7FdBkEtVmAT6ffNdKoeyM5Q+Wwq1U+N3IhJ9BbIt6sN7SN2UAivrY083jePZtUQXV56G0t5HdrUHZSPDbYbkNUjmdiS2EVbbErO6lMDBa9wuBcvM+3f8xWr5sX7xCJh/Oyu1PYN9bwkUBk1M+52hUv0M1fSz/+9TbdhomYfB67HflXBC6JkZYpbb0nYiJUNhgXjMoSovISvK31CcegNKdhexssYKRbn+KvMQ1mg+YcYnxp7TMXk5ek1GqRAv7r57++5aZhtdoN+hzJBSaLWhspAIfQ9B5E1yoYPF3x16cCfpoTmNpSWqHYZpuVVKDybjpjyNSjG4BQx6mAlhZDByJ9NLbs6E6Vm9TNXqKyg0/qCAg2iJmSe4Btq/IX5eDLMJDfoQaLu9Cr+lnzUS8t14wMWTyJoT/gyKf8oEsILkoGAlyaXsFsD9O7Uedtqv4UdHMi+Oii2WKlM9ykseqVdCUud3hD3cvncCOIU05rFTZXp6cenWE0mOnBtLg3oRxlpu5g93u01JIxnTEeW+U+7FP4ozDszoEPaZHKTi2AhVSddPcLdnM9zi1HqMy7gt6oyyjm7lxhBHW/HaaEet3QjmlFa1wr09Oo+EGkQvOKrj8GW+jHz32uLQRWHZiBa/aZzSODDfEdK5L2j7tiVkuJ8g=
