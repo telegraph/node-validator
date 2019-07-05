@@ -9,7 +9,9 @@
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover --config ./spec/support/.istanbul.yml node_modules/jasmine/bin/jasmine.js",
-    "codacyCoverage": "npm test && cat ./dist/coverage/lcov.info | codacy-coverage && rm -rf dist/coverage"
+    "codacyCoverage": "npm test && cat ./dist/coverage/lcov.info | codacy-coverage && rm -rf dist/coverage",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Telegraph Engineering",
   "keywords": [
@@ -22,7 +24,8 @@
   "dependencies": {
     "codacy-coverage": "^2.1.0",
     "lodash": "^4.17.4",
-    "test": "^0.6.0"
+    "test": "^0.6.0",
+    "snyk": "^1.192.0"
   },
   "devDependencies": {
     "istanbul": "0.4.5",
@@ -38,5 +41,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "snyk": true
 }
